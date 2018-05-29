@@ -1,13 +1,73 @@
 import requests
 import json
 
-def getPrices():
+def getPrices(securityRating):
     #dictionary containing: ore:[type_id, average market price]
-    ores = {
-        "Veldspar": [1230, 0],
-        "Scordite": [1228, 0],
-        "Kernite": [20, 0]
-    }
+    ores = {}
+
+    #Ore security ratings from eveuniversity.org
+    if securityRating == 1:
+        ores = {
+            "Veldspar": [1230, 0],
+            "Scordite": [1228, 0],
+        }
+    elif securityRating == .9 or securityRating == .8:
+        ores = {
+            "Veldspar": [1230, 0],
+            "Scordite": [1228, 0],
+            "Pyroxeres": [1224, 0],
+            "Plagioclase": [18, 0]
+        }
+    elif securityRating == .6 or securityRating == .6 or securityRating == .5:
+        ores = {
+            "Veldspar": [1230, 0],
+            "Scordite": [1228, 0],
+            "Pyroxeres": [1224, 0],
+            "Plagioclase": [18, 0],
+            "Kernite": [20, 0],
+            "Omber": [1227, 0]
+        }
+    elif securityRating == .4 or securityRating == .3:
+        ores = {
+            "Veldspar": [1230, 0],
+            "Scordite": [1228, 0],
+            "Pyroxeres": [1224, 0],
+            "Plagioclase": [18, 0],
+            "Kernite": [20, 0],
+            "Omber": [1227, 0],
+            "Jaspet": [1226, 0]
+        }
+    elif securityRating == .2 or securityRating == .1:
+        ores = {
+            "Veldspar": [1230, 0],
+            "Scordite": [1228, 0],
+            "Pyroxeres": [1224, 0],
+            "Plagioclase": [18, 0],
+            "Kernite": [20, 0],
+            "Omber": [1227, 0],
+            "Jaspet": [1226, 0],
+            "Hemorphite": [1231, 0],
+            "Hedbergite": [21, 0]
+        }       
+    elif securityRating == 0:
+        ores = {
+            "Veldspar": [1230, 0],
+            "Scordite": [1228, 0],
+            "Pyroxeres": [1224, 0],
+            "Plagioclase": [18, 0],
+            "Kernite": [20, 0],
+            "Omber": [1227, 0],
+            "Jaspet": [1226, 0],
+            "Hemorphite": [1231, 0],
+            "Hedbergite": [21, 0],
+            "Spodumain": [19, 0],
+            "Gneiss": [1229, 0],
+            "Crokite": [1225, 0],
+            "Arkonor": [22, 0],
+            "Bistot": [1223, 0],
+            "Mercoxit": [11396, 0],
+            "Dark Ochre": [1232, 0],
+        }   
     #url of eve api that returns market prices
     URL = "https://esi.evetech.net/latest/markets/prices/"
 
