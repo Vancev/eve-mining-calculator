@@ -6,39 +6,74 @@
 from getData import *
 from calculations import *
 from helpers import *
-import sys
 
 #TODO user input error hanling, allowing to enter travel time, showing time to break even 
 securityRating = ""
-travelTime = ""
-correctSC = False
-try:
-    #make sure securityRating input is a float between 0 and 1
-    while securityRating > 1 or securityRating <0:
-        while correctSC == False:
-            securityRating = raw_input("Enter the lowest security rating to mine in (0-1): ")
-            if isFloat(securityRating) == True:
-                correctSC = True
-                securityRating = float(securityRating)
-            else:
-                correctSC = False
+correctInput = False
+#make sure securityRating input is a float between 0 and 1
+while correctInput == False:
+    securityRating = raw_input("Enter the lowest security rating to mine in (0-1): ")
+    if isFloat(securityRating) == True:
+        securityRating = float(securityRating)
+        if securityRating > 1 or securityRating <0:
+            correctInput = False
+        else:
+            correctInput = True
+    else:
+        correctInput = False
 
+correctInput = False
+while correctInput == False:
     cargoSize = raw_input("Enter your cargo size: ")
+    if isInt(cargoSize) == True:
+        correctInput = True
+        cargoSize = int(cargoSize)
+    else: 
+        correctInput = False
+
+correctInput = False
+while correctInput == False:
     miningAmount = raw_input("Enter the mining lazers mining amount(per lazer): ")
+    if isInt(miningAmount) == True:
+        correctInput = True
+        miningAmount = int(miningAmount)
+    else:
+        correctInput = False
+
+correctInput = False
+while correctInput == False:
     duration = raw_input("Enter the lazers duration in seconds: ")
+    if isInt(duration) == True:
+        correctInput = True
+        duration = int(duration)
+    else:
+        correctInput = False
+
+correctInput = False
+while correctInput == False:
     lazerAmount = raw_input("Enter the number of lazers: ")
-    travelTime = raw_input("Enter your travel time. (Optional, press enter to skip: ")
-    cargoSize = int(cargoSize)
-    miningAmount = int(miningAmount)
-    duration = int(duration)
-    lazerAmount = int(lazerAmount)
-    if travelTime:
-        travelTime = int(travelTime)
-except:
-    print "A number must be entered for all inputs"
-    sys.exit()
+    if isInt(lazerAmount) == True:
+        correctInput = True
+        lazerAmount = int(lazerAmount)
+    else:
+        correctInput = False
+
+correctInput = False
+travelTime = ""
+while correctInput == False:
+    travelTime = raw_input("Enter your round trip travel time in minutes. (Optional, press enter to skip): ")
+    if isInt(travelTime) == True:
+        correctInput = True
+        lazerAmount = int(lazerAmount)
+    elif travelTime == "":
+        correctInput = True
+    else:
+        correctInput = False
 
 print "\nMining time to a full hold: ", fullHold(cargoSize, miningAmount, duration, lazerAmount), " minutes\n"
-#calculates the isk for a full hold with each ore
-ore = iskPerHoldAndHour(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1))
+#calculates the isk for a full hold with each ore depending if travel time has been entered
+if travelTime == "":
+    ore = iskPerHoldAndHour(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1))
+else:
+    ore = iskPerHoldAndHourTimeGiven(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1), travelTime)
 print ore
