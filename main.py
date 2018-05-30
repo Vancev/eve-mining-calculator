@@ -7,7 +7,7 @@ from getData import *
 from calculations import *
 from helpers import *
 
-#TODO user input error hanling, allowing to enter travel time, showing time to break even 
+#TODO showing time to break even 
 securityRating = ""
 correctInput = False
 #make sure securityRating input is a float between 0 and 1
@@ -70,10 +70,22 @@ while correctInput == False:
     else:
         correctInput = False
 
+correctInput = False
+breakEven = ""
+while correctInput == False:
+    breakEven = raw_input("Enter the ammount of ISK needed to break even. (Optional, press enter to skip): ")
+    if isInt(breakEven) == True:
+        correctInput = True
+        breakEven = int(breakEven)
+    elif breakEven == "":
+        correctInput = True
+    else:
+        correctInput = False
+
 print "\nMining time to a full hold: ", fullHold(cargoSize, miningAmount, duration, lazerAmount), " minutes\n"
 #calculates the isk for a full hold with each ore depending if travel time has been entered
 if travelTime == "":
-    ore = iskPerHoldAndHour(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1))
+    ore = iskPerHoldAndHour(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1), breakEven)
 else:
-    ore = iskPerHoldAndHourTimeGiven(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1), travelTime)
+    ore = iskPerHoldAndHourTimeGiven(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1), travelTime, breakEven)
 print ore
