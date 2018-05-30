@@ -28,10 +28,10 @@ def iskPerHoldAndHour(cs, ma, d, la, sc):
     ore = PrettyTable(['Ore', 'Average Price', 'Value of Full Hold(ISK)', 'ISK per Hour'])
     #creates a string containing the ore name, value of full cargo hold, and isk per hour
     for key, value in ores.items():
-        ore.add_row([str(key), str(value[1]), str(value[1] * totalMined), str(value[1] * orePerHour)])
+        ore.add_row([str(key), '{:,.2f}'.format(float(value[1])), '{:,.2f}'.format(float(value[1] * totalMined)), '{:,.2f}'.format(float(value[1] * orePerHour))])
     return ore
 
-    #returns the isk per hold as well as isk per hour per each ore
+#returns the isk per hold, isk per hour per each ore, and isk per hour with travel time
 #cargoSize, miningAmount, duration, lazerAmount, securityRating, travelTime
 def iskPerHoldAndHourTimeGiven(cs, ma, d, la, sc, tt):
     ores = getPrices(sc)
@@ -47,5 +47,5 @@ def iskPerHoldAndHourTimeGiven(cs, ma, d, la, sc, tt):
     ore = PrettyTable(['Ore', 'Average Price', 'Value of Full Hold(ISK)', 'ISK per Hour of Mining', 'ISK per Hour Including Travel'])
     #creates a string containing the ore name, value of full cargo hold, and isk per hour
     for key, value in ores.items():
-        ore.add_row([str(key), str(value[1]), str(value[1] * totalMined), str(value[1] * orePerHour), str(value[1] * (orePerHour-oreLostPerHour))])
+        ore.add_row([str(key), '{:,.2f}'.format(float(value[1])), '{:,.2f}'.format(float(value[1] * totalMined)), '{:,.2f}'.format(float(value[1] * orePerHour)), '{:,.2f}'.format(float(value[1] * (orePerHour-oreLostPerHour)))])
     return ore
