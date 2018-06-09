@@ -56,14 +56,14 @@ def iskPerHoldAndHourTimeGiven(cs, ma, d, la, sc, tt, be):
     totalMined = amountPerMine * minesPerCargo
     #if break even ammount has not been entered
     if be == "":
-        #creates a string containing the ore name, ore price, value of full cargo hold, isk per hour of mining, and isk per hour including travel
+        #creates a table containing ore name, ore price, value of full cargo hold, isk per hour of mining, and isk per hour including travel
         ore = PrettyTable(['Ore', 'Average Price', 'Value of Full Hold(ISK)', 'ISK per Hour of Mining', 'ISK per Hour Including Travel'])
         for key, value in ores.items():
             ore.add_row([str(key), commaFormat(value[2]), commaFormat((1.0/value[1]) * value[2] * totalMined), 
                         commaFormat((1.0/value[1]) * value[2] * orePerHour), commaFormat((1.0/value[1]) * value[2] * (orePerHour-oreLostPerHour))])
     #break even amount has been entered
     else:
-        #creates a string containing the ore name, ore price, value of full cargo hold, isk per hour, isk per hour including travel, and time to break even (based on isk/hr including travel)
+        #creates a table containing the ore name, ore price, value of full cargo hold, isk per hour, isk per hour including travel, and time to break even (based on isk/hr including travel)
         ore = PrettyTable(['Ore', 'Average Price', 'Value of Full Hold(ISK)', 'ISK per Hour of Mining', 'ISK per Hour Including Travel', 'Time to Break Even (HH:MM:SS)'])
         for key, value in ores.items():
             ore.add_row([str(key), commaFormat(value[2]), commaFormat((1.0/value[1]) * value[2] * totalMined), 

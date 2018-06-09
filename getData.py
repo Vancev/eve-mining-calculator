@@ -6,6 +6,8 @@
 import requests
 import json
 
+#takes a float of the lowest security rating and returns a dictionary with the ores typeID,
+#mass, and current average market price
 def getPrices(securityRating):
     #dictionary containing: ore:[type_id, mass, average market price]
     ores = {}

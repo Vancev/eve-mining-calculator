@@ -73,7 +73,7 @@ while correctInput == False:
 correctInput = False
 breakEven = ""
 while correctInput == False:
-    breakEven = raw_input("Enter the amount of ISK needed to break even. (Optional, press enter to skip): ")
+    breakEven = raw_input("Enter the ammount of ISK needed to break even. (Optional, press enter to skip): ")
     if isInt(breakEven) == True:
         correctInput = True
         breakEven = int(breakEven)

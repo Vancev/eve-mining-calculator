@@ -1,5 +1,7 @@
 # Eve Mining Calculator 
 
+Copyright (c) 2018 VanceV
+
 ## What is the mining calculator?
 The eve mining calculator is a tool that gives you get a better idea on what to mine, and how profitable mining can be. This calculator can calculate the following:
 * Mining time to a full hold
@@ -53,5 +55,3 @@ You will be promted to enter the following information when running the calculat
 ## License
 
 This program is licensed under the "MIT License". Please see the file LICENSE in the source distribution of this software for license terms.
-
- 

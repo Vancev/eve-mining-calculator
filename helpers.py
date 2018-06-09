@@ -3,7 +3,7 @@
 # Please see the file LICENSE in the source
 # distribution of this software for license terms.
 
-#returns true if item passed in is a float. Returns false otherwise
+#takes in any value and returns true if item passed in is a float. Returns false otherwise
 def isFloat(number):
     try:
         float(number)
@@ -11,7 +11,7 @@ def isFloat(number):
     except:
         return False
 
-#returns true if item passed in is an int. Returns false otherwise
+#takes in any value and returns true if item passed in is an int. Returns false otherwise
 def isInt(number):
     try:
         int(number)
@@ -19,10 +19,11 @@ def isInt(number):
     except:
         return False
 
-#formats number with commas
+#takes in a number formats it with commas every 3 digits
 def commaFormat(number):
     return '{:,.2f}'.format(float(number))
 
+#given a float of a time in hours, returnes a string formatted in HH:MM:SS
 def hoursAndMinutes(number):
     hours = int(number)
     minutes = int((number*60) % 60)
