@@ -3,7 +3,7 @@
 Copyright (c) 2018 VanceV
 
 ## What is the mining calculator?
-The eve mining calculator is a tool that gives you get a better idea on what to mine, and how profitable mining can be. This calculator can calculate the following:
+The eve mining calculator is a tool for [EVE Online](https://www.eveonline.com/) that gives you get a better idea on what to mine, and how profitable mining can be. This calculator can calculate the following:
 * Mining time to a full hold
 * Average price of each ore
 * Value of a full hold for each ore
