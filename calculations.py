@@ -2,6 +2,7 @@
 # [This program is licensed under the "MIT License"]
 # Please see the file LICENSE in the source
 # distribution of this software for license terms.
+from __future__ import division
 from getData import *
 from prettytable import PrettyTable
 from helpers import commaFormat, hoursAndMinutes
@@ -10,9 +11,9 @@ from helpers import commaFormat, hoursAndMinutes
 #cargoSize, miningAmount, duration, lazerAmount
 def fullHold(cs, ma, d, la):
     amountPerMine = float(ma) * float(la)
-    minesPerCargo = float(cs) / float(amountPerMine)
-    timeToFull = float(d) * float(minesPerCargo)
-    return timeToFull
+    orePerSec = float(amountPerMine) / float(d)
+    timeToFull = float(cs) / float(orePerSec)
+    return round(float(timeToFull)/60, 2)
 
 #returns the isk per hold as well as isk per hour per each ore
 #cargoSize, miningAmount, duration, lazerAmount, securityRating, breakEven
@@ -28,16 +29,16 @@ def iskPerHoldAndHour(cs, ma, d, la, sc, be):
     #if break even ammount has not been entered
     if be == "":
         #creates a table containing the ore name, ore price, value of full cargo hold, and isk per hour
-        ore = PrettyTable(['Ore', 'Average Price', 'Time to Full Hold', 'Value of Full Hold(ISK)', 'ISK per Hour'])
+        ore = PrettyTable(['Ore', 'Average Price', 'Value of Full Hold(ISK)', 'ISK per Hour'])
         for key, value in ores.items():
-            ore.add_row([str(key), commaFormat(value[2]), round(float((1.0/value[1]) * fullHold(cs,ma,d,la))/60,2), commaFormat((1.0/value[1]) * value[2] * totalMined), 
+            ore.add_row([str(key), commaFormat(value[2]), commaFormat((1.0/value[1]) * value[2] * totalMined), 
                         commaFormat((1.0/value[1]) * value[2] * orePerHour)])
     #if break even ammount has been entered
     else: 
         #creates a table containing the ore name, ore price, value of full cargo hold, isk per hour, and time to break even 
-        ore = PrettyTable(['Ore', 'Average Price', 'Time to Full Hold', 'Value of Full Hold(ISK)', 'ISK per Hour', 'Time to Break Even (HH:MM:SS)'])
+        ore = PrettyTable(['Ore', 'Average Price', 'Value of Full Hold(ISK)', 'ISK per Hour', 'Time to Break Even (HH:MM:SS)'])
         for key, value in ores.items():
-            ore.add_row([str(key), commaFormat(value[2]), round(float((1.0/value[1]) * fullHold(cs,ma,d,la))/60,2), commaFormat((1.0/value[1]) * value[2] * totalMined), 
+            ore.add_row([str(key), commaFormat(value[2]), commaFormat((1.0/value[1]) * value[2] * totalMined), 
                         commaFormat((1.0/value[1]) * value[2] * orePerHour), hoursAndMinutes(float(be/((1.0/value[1]) * value[2] * orePerHour)))])
     return ore
 
@@ -57,16 +58,16 @@ def iskPerHoldAndHourTimeGiven(cs, ma, d, la, sc, tt, be):
     #if break even ammount has not been entered
     if be == "":
         #creates a string containing the ore name, ore price, value of full cargo hold, isk per hour of mining, and isk per hour including travel
-        ore = PrettyTable(['Ore', 'Average Price', 'Time to Full Hold', 'Value of Full Hold(ISK)', 'ISK per Hour of Mining', 'ISK per Hour Including Travel'])
+        ore = PrettyTable(['Ore', 'Average Price', 'Value of Full Hold(ISK)', 'ISK per Hour of Mining', 'ISK per Hour Including Travel'])
         for key, value in ores.items():
-            ore.add_row([str(key), commaFormat(value[2]), round(float((1.0/value[1]) * fullHold(cs,ma,d,la))/60,2), commaFormat((1.0/value[1]) * value[2] * totalMined), 
+            ore.add_row([str(key), commaFormat(value[2]), commaFormat((1.0/value[1]) * value[2] * totalMined), 
                         commaFormat((1.0/value[1]) * value[2] * orePerHour), commaFormat((1.0/value[1]) * value[2] * (orePerHour-oreLostPerHour))])
     #break even amount has been entered
     else:
         #creates a string containing the ore name, ore price, value of full cargo hold, isk per hour, isk per hour including travel, and time to break even (based on isk/hr including travel)
-        ore = PrettyTable(['Ore', 'Average Price', 'Time to Full Hold', 'Value of Full Hold(ISK)', 'ISK per Hour of Mining', 'ISK per Hour Including Travel', 'Time to Break Even (HH:MM:SS)'])
+        ore = PrettyTable(['Ore', 'Average Price', 'Value of Full Hold(ISK)', 'ISK per Hour of Mining', 'ISK per Hour Including Travel', 'Time to Break Even (HH:MM:SS)'])
         for key, value in ores.items():
-            ore.add_row([str(key), commaFormat(value[2]), round(float((1.0/value[1]) * fullHold(cs,ma,d,la))/60,2), commaFormat((1.0/value[1]) * value[2] * totalMined), 
+            ore.add_row([str(key), commaFormat(value[2]), commaFormat((1.0/value[1]) * value[2] * totalMined), 
                         commaFormat((1.0/value[1]) * value[2] * orePerHour), commaFormat((1.0/value[1]) * value[2] * (orePerHour-oreLostPerHour)), 
                         hoursAndMinutes(float(be/((1.0/value[1]) * value[2] * (orePerHour - oreLostPerHour))))])
     return ore
