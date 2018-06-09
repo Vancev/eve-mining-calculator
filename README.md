@@ -14,12 +14,13 @@ The eve mining calculator is a tool for [EVE Online](https://www.eveonline.com/)
 Additionally, the user can enter the lowest security level they're comfortable mining in and only receive information for ores in the corresponding security levels. 
 
 ## Getting Started
-1. Open up the command prompt or terminal. 
-2. Change to the directory you wish to run the program in.
-3. Run ```git clone https://github.com/Vancev/eve-mining-calculator.git```
-4. Type in ``` pip install PrettyTable```
-5. Now change into the new directory named ```eve-mining-calculator```
-6. Run ```python main.py```
+1. If you don't already have it, [download Python](https://www.python.org/downloads/)
+2. Open up the command prompt or terminal. 
+3. Change to the directory you wish to run the program in.
+4. Run ```git clone https://github.com/Vancev/eve-mining-calculator.git```
+5. Type in ``` pip install PrettyTable```
+6. Now change into the new directory named ```eve-mining-calculator```
+7. Run ```python main.py```
 
 ## Using the calculator 
 You will be promted to enter the following information when running the calculator:
