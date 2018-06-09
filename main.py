@@ -7,7 +7,7 @@ from getData import *
 from calculations import *
 from helpers import *
 
-#TODO showing time to break even 
+#TODO: make travel time calculations more accurate
 securityRating = ""
 correctInput = False
 #make sure securityRating input is a float between 0 and 1
@@ -25,33 +25,33 @@ while correctInput == False:
 correctInput = False
 while correctInput == False:
     cargoSize = raw_input("Enter your cargo size: ")
-    if isInt(cargoSize) == True:
+    if isFloat(cargoSize) == True:
         correctInput = True
-        cargoSize = int(cargoSize)
+        cargoSize = float(cargoSize)
     else: 
         correctInput = False
 
 correctInput = False
 while correctInput == False:
-    miningAmount = raw_input("Enter the mining lazers mining amount(per lazer): ")
-    if isInt(miningAmount) == True:
+    miningAmount = raw_input("Enter the mining lasers mining amount(per laser): ")
+    if isFloat(miningAmount) == True:
         correctInput = True
-        miningAmount = int(miningAmount)
+        miningAmount = float(miningAmount)
     else:
         correctInput = False
 
 correctInput = False
 while correctInput == False:
-    duration = raw_input("Enter the lazers duration in seconds: ")
-    if isInt(duration) == True:
+    duration = raw_input("Enter the lasers duration in seconds: ")
+    if isFloat(duration) == True:
         correctInput = True
-        duration = int(duration)
+        duration = float(duration)
     else:
         correctInput = False
 
 correctInput = False
 while correctInput == False:
-    lazerAmount = raw_input("Enter the number of lazers: ")
+    lazerAmount = raw_input("Enter the number of lasers: ")
     if isInt(lazerAmount) == True:
         correctInput = True
         lazerAmount = int(lazerAmount)
@@ -82,7 +82,6 @@ while correctInput == False:
     else:
         correctInput = False
 
-print "\nMining time to a full hold: ", fullHold(cargoSize, miningAmount, duration, lazerAmount), " minutes\n"
 #calculates the isk for a full hold with each ore depending if travel time has been entered
 if travelTime == "":
     ore = iskPerHoldAndHour(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1), breakEven)
