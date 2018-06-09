@@ -2,7 +2,6 @@
 # [This program is licensed under the "MIT License"]
 # Please see the file LICENSE in the source
 # distribution of this software for license terms.
-from __future__ import division
 from getData import *
 from prettytable import PrettyTable
 from helpers import commaFormat, hoursAndMinutes
