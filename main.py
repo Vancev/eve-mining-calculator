@@ -82,6 +82,7 @@ while correctInput == False:
     else:
         correctInput = False
 
+print "\nMining time to a full hold: ", fullHold(cargoSize, miningAmount, duration, lazerAmount), " minutes\n"
 #calculates the isk for a full hold with each ore depending if travel time has been entered
 if travelTime == "":
     ore = iskPerHoldAndHour(cargoSize, miningAmount, duration, lazerAmount, round(float(securityRating), 1), breakEven)
